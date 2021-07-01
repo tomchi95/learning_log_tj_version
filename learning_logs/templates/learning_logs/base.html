@@ -35,6 +35,9 @@
                         <span class="navbar-text"> Witaj, {{ user.username }}.</span>
                     </li>
                     <li class="nav-item">
+                        <a class='nav-link' href=" {% url 'password_change' %}"> Zmień hasło</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href=" {% url 'users:logout' %}"> Wyloguj</a>
                     </li>
                 {% else %}
@@ -44,6 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href= {% url 'users:login' %}> Zaloguj</a>
                     </li>
+                    
                 {% endif %}
             </ul>
         </div>
