@@ -31,16 +31,19 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <span class="navbar-text"> Witaj, {{ user.username }}.</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class='nav-link' href=" {% url 'password_change' %}"> Zmień hasło</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'users:logout' %}"> Wyloguj</a>
-                    </li>
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Witaj, {{ user.username }}
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button" onclick=" location.href='{% url 'password_change' %}'"> Zmień hasło</button>
+                            <button class="dropdown-item" type="button" onclick=" location.href= '{% url 'users:logout' %}'"> Wyloguj</button>
+                        </div>
+                    </div>
+
                 {% else %}
+
                     <li class="nav-item">
                         <a class='nav-link' href=" {% url 'users:register' %}"> Rejestruj</a>
                     </li>
