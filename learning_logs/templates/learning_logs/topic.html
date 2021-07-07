@@ -1,11 +1,11 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block page_header %}
-    <h2> {{ topic }} </h2>
+    <h2 style="text-align:center;"> {{ topic }} </h2>
 {% endblock page_header %}
 
 {% block content %}
-    <p>
+    <p style="text-align:center;">
         <a href="{% url 'learning_logs:new_entry' topic.id %}">Dodaj nowy wpis</a>
     </p>
 
@@ -13,10 +13,10 @@
     {% for entry in entries %}
         <div class="card mb-3">
             <h4 class="card-header">
-                <!{{ entry.data_added|date:'d M Y H:i' }}>
+                <!--{{ entry.data_added|date:'d M Y H:i' }}-->
                 <p class="date">Opublikowany {{ entry.data_added|date:'d M Y H:i' }} przez {{ topic.owner }}>
-                    <small><a href=" {% url 'learning_logs:edit_entry' entry.id %}">Edytuj wpis</a></small>
-                    <small><a href=" {% url 'learning_logs:remove_entry' entry.id %}">Usuń wpis</a></small>
+                    <small><a href=" {% url 'learning_logs:edit_entry' entry.id %}">[Edytuj wpis]</a></small>
+                    <small><a href=" {% url 'learning_logs:remove_entry' entry.id %}">[Usuń wpis]</a></small>
                 </h4>
                 <div class="card-body">
                     {{ entry.text|linebreaks }}

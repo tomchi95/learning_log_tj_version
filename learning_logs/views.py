@@ -133,8 +133,30 @@ def remove_entry(request, entry_id):
         entry.delete()
             #return redirect('learning_logs:topic', topic_id = topic.id)
         return HttpResponseRedirect(reverse('learning_logs:topic',
-                                    args=[topic.id]))
+                                        args=[topic.id]))
 
     context = {'entry' : entry,'topic': topic, 'form': form}
     return render(request, 'learning_logs/remove_entry.html', context)
+
+@login_required
+def remove_topic(request, topic_id):
+    
+    topic = Topic.objects.get(id = topic_id)
+
+
+    if topic.owner != request.user:
+        raise Http404
+
+    if request.method != 'POST' :
+        #zadanie poczatkowe, wypelnienie formularza aktualna trescia wpisu
+        form= TopicForm(instance=topic)
+    else:
+        #przekazano dane za pomoca zadania POST, nalezy je przetworzyc
+        form = TopicForm(instance=topic)
+        topic.delete()
+            #return redirect('learning_logs:topic', topic_id = topic.id)
+        return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/remove_topic.html', context)
     
