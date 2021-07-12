@@ -29,5 +29,8 @@ urlpatterns = [
 
 	#strona przeznaczona do usuwania tematu
 	path('topics/<int:topic_id>/remove_topic/', views.remove_topic, name="remove_topic"),
+
+	#strona przeznaczona do edycji tematu
+	path('edit_topic/<int:topic_id>/', views.edit_topic, name="edit_topic"),
 	
 ]

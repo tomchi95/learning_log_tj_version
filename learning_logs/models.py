@@ -7,11 +7,16 @@ class Topic(models.Model):
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    header_image = models.ImageField(blank= True, upload_to = "images/")
+    header_image = models.ImageField(blank= True, null= True, upload_to = "images/")
 
     def __str__(self):
         """Zwraca reprezentację modelu w postaci ciągu tekstowego."""
         return self.text
+
+    def delete(self):
+        self.header_image.delete()
+        super().delete()
+
 
 class Entry(models.Model):
     """Konkretne informacje o postepie w nauce. """

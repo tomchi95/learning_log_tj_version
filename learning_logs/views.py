@@ -62,8 +62,6 @@ def new_topic(request):
     context = {'form': form} 
     return render(request, 'learning_logs/new_topic.html', context)
 
-def new_func(request):
-    return request.header_image
 
 
 
@@ -118,6 +116,32 @@ def edit_entry(request, entry_id):
 
     context = {'entry' : entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
+
+@login_required
+def edit_topic(request, topic_id):
+    """Edycja istniejacego tematu"""
+    topic = Topic.objects.get(id=topic_id)
+
+    if topic.owner != request.user:
+        raise Http404
+
+    if request.method != 'POST' :
+        #zadanie poczatkowe, wypelnienie formularza aktualna trescia wpisu
+        form= TopicForm(instance=topic)
+    else:
+        #przekazano dane za pomoca zadania POST, nalezy je przetworzyc
+        form= TopicForm(data= request.POST, files= request.FILES, instance=topic)
+
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.save()
+            #return redirect('learning_logs:topic', topic_id = topic.id)
+            return HttpResponseRedirect(reverse('learning_logs:topic',
+                                        args=[topic.id]))
+
+    context = { 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_topic.html', context)
 
 @login_required
 def remove_entry(request, entry_id):

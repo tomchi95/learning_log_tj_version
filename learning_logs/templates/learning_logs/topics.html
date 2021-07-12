@@ -32,6 +32,10 @@
                                             Pokaż więcej
                                         </button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                            onclick="location.href='{% url 'learning_logs:edit_topic' topic.id %}'">
+                                            Edytuj
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
                                             onclick="location.href='{% url 'learning_logs:remove_topic' topic.id %}'">
                                             Usuń
                                         </button>
