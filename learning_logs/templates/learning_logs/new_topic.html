@@ -3,7 +3,7 @@
 
 {% block content %}
 <h3>Dodaj nowy temat: </h3>
-  <form action="{% url 'learning_logs:new_topic' %}" method='post' class="form">
+  <form action="{% url 'learning_logs:new_topic' %}" method='post' enctype= "multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}

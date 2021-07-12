@@ -50,7 +50,7 @@ def new_topic(request):
         form = TopicForm()
     else:
         #przekazano dane za pomoca zadania POST, nalezy je przetworzyc
-        form = TopicForm(data=request.POST)
+        form = TopicForm(request.POST, request.FILES )
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
@@ -61,6 +61,9 @@ def new_topic(request):
     #Wyswietlanie pustego formularza
     context = {'form': form} 
     return render(request, 'learning_logs/new_topic.html', context)
+
+def new_func(request):
+    return request.header_image
 
 
 
