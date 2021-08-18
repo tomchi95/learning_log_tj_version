@@ -8,5 +8,10 @@
     
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "python.linting.flake8Args": ["--ignore=W292,E203, E201, E251"]
+    "python.linting.flake8Args": [
+        "--ignore=W292,E203, E201, E251"
+    ],
+    "cSpell.words": [
+        "theblog"
+    ]
 }
