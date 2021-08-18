@@ -2,18 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class Topic(models.Model):
-    """Temat poznawany przez uzytkownika."""
+    """Temat poznawany przez użytkownika."""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    header_image = models.ImageField(blank= True, null= True, upload_to = "images/")
+    header_image = models.ImageField(blank=True, null=True, upload_to="images/")
 
     def __str__(self):
         """Zwraca reprezentację modelu w postaci ciągu tekstowego."""
         return self.text
 
     def delete(self):
+        """ Usuwa zdjęcie tematu."""
         self.header_image.delete()
         super().delete()
 
@@ -26,12 +29,10 @@ class Entry(models.Model):
 
     class Meta:
         verbose_name_plural = 'entries'
-    
+
     def __str__(self):
-        """Zwraca reprezentacje modelu w postaci ciagu tekstowego"""
+        """Zwraca reprezentacje modelu w postaci ciągu tekstowego"""
         if len(self.text) > 50:
             return f"{self.text[:50]}..."
         else:
             return f"{self.text}"
-
-        

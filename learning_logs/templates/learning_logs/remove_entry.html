@@ -7,7 +7,7 @@
 {% endblock header %}
 
 {% block content %}
-  <h3>Czy napewno chcesz usunąć wpis: </h3>
+  <h3>Czy na pewno chcesz usunąć wpis: </h3>
   <form action="{% url 'learning_logs:remove_entry' entry.id %}" method='post'>
     {% csrf_token %}
     <div class ="jumbotron">

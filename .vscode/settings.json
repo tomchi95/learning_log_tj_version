@@ -1,4 +1,12 @@
 {
     "python.pythonPath": "ll_env\\Scripts\\python.exe",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.language" : "en,pl",
+    "editor.fontFamily": " 'Fira code Medium',  Consolas, 'Courier New', monospace",
+    "cSpell.enableFiletypes": [
+        "django-html"],
+    
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Args": ["--ignore=W292,E203, E201, E251"]
 }

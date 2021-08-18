@@ -6,10 +6,10 @@ from . import views
 
 app_name = 'learning_logs'
 urlpatterns = [
-	#strona glowna.
+	#strona głowna.
 	path('', views.index, name='index'),
 
-	#wyswietlanie wszystkich tematow.
+	#wyświetlanie wszystkich tematow.
 	path('topics/', views.topics, name = 'topics'),
 
 	#Strona szczegółowa dotycząca pojedynczego tematu.

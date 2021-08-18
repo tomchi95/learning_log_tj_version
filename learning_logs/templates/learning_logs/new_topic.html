@@ -2,13 +2,16 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<h3>Dodaj nowy temat: </h3>
+<h3 style="text-align:center;">Dodaj nowy temat: </h3>
   <form action="{% url 'learning_logs:new_topic' %}" method='post' enctype= "multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% buttons %}
-    <button name='submit' class="btn btn-primary">Dodaj temat</button>
-    <input class="btn btn-primary" type=button value="Wróć" onClick="javascript:history.go(-1);">
-    {% endbuttons %}
+    <div>
+    <br>
+      {% buttons %}
+      <button name='submit' class="btn btn-primary">Dodaj temat</button>
+      <input class="btn btn-primary" type=button value="Wróć" onClick="javascript:history.go(-1);">
+      {% endbuttons %}
+    </div>
   </form>
 {% endblock content %}
