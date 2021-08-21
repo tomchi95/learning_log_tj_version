@@ -21,6 +21,14 @@ class Topic(models.Model):
         super().delete()
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Entry(models.Model):
     """Konkretne informacje o postepie w nauce. """
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

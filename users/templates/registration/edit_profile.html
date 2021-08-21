@@ -1,0 +1,16 @@
+{% extends "learning_logs/base.html"%}
+{% load bootstrap4 %}
+{% block header %}
+  <h2>Edytuj profil</h2>
+{% endblock header %}
+{% block content %}
+<h1 style="text-align:center;"> Edytuj profil </h1>
+<br>
+  <form method='post' action="{%url 'users:edit_profile'%}" class="form">
+    {% csrf_token %}
+	{% bootstrap_form form %}
+	{% buttons %}
+    <button name='submit' class="btn btn-primary">Edytuj profil</button>
+	{% endbuttons %}
+  </form>
+{% endblock content %}
