@@ -2,8 +2,8 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h3 style="text-align:center;">Edytuj profil:</h3>
-  <form action="{% url 'users:edit_profile' user.id %}" method='post' class="form" enctype= "multipart/form-data">
+  <h3 style="text-align:center;">Utwórz profil:</h3>
+  <form action="{% url 'users:new_profile' %}" method='post' class="form" enctype= "multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}

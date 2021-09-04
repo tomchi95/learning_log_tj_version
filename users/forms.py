@@ -14,9 +14,9 @@ class SignUpForm(UserCreationForm):
 
 
 class EditForm(UserChangeForm):
-    #powoduje brak formularza hasla z UserChangeForm
+    # powoduje brak formularza hasła z UserChangeForm
     password = None
-    #pozwala edytowac poniższe formy
+    # pozwala edytować poniższe formy
     email = forms.EmailField()
     first_name = forms.CharField(max_length=100, required=False, label='Imię')
     last_name = forms.CharField(max_length=100, required=False, label='Nazwisko')

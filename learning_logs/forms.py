@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Topic, Entry
+from .models import Topic, Entry, Profile
 
 
 class TopicForm(forms.ModelForm):
@@ -16,3 +16,9 @@ class EntryForm(forms.ModelForm):
         fields = ['text']
         labels = {'text': ''}
         widgets = {'': forms.Textarea(attrs={'cols': 80})}
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'profile_pic', 'website_url', 'facebook_url', 'twitter_url', 'insta_url', 'pinterest_url']
