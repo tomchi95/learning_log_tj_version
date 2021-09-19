@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -43,7 +44,8 @@ class Profile(models.Model):
 class Entry(models.Model):
     """Konkretne informacje o postepie w nauce. """
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    text = models.TextField()
+    #text = models.TextField()
+    text = RichTextField(blank = True, null = True)
     data_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:

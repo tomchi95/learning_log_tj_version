@@ -11,7 +11,7 @@
   <form action="{% url 'learning_logs:remove_entry' entry.id %}" method='post'>
     {% csrf_token %}
     <div class ="jumbotron">
-    <p class="lead"> {{ entry }} </p>
+    <p class="lead"> {{ entry|safe }} </p>
     </div>
     {% buttons %}
     <button name='submit' class="btn btn-primary">Usuń</button>

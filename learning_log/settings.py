@@ -46,7 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #aplikacje innych firm
-    'bootstrap4'
+    'bootstrap4',
+    
+    #aplikacja do bardziej rozbudowanego edytora tekstowego
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
