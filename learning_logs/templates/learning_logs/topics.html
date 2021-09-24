@@ -1,0 +1,60 @@
+{% extends 'learning_logs/base.html' %}
+{% load static %}
+{% block page_header %}
+    <h1 style="text-align:center;"> Tematy </h1>
+{% endblock page_header %}
+
+{% block content %}
+
+<h3 style="text-align:center"><a href =" {% url 'learning_logs:new_topic' %}" > Dodaj nowy temat</a></h3>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            {% for topic in topics %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225">
+                            <defs>
+                                <clipPath id="rectView">
+                                <rect width="100%" height="100%" fill="#55595c"></rect></clipPath>
+                            </defs>
+                            {% if topic.header_image %}
+                                <image width ="100%" height="225" xlink:href="{{ topic.header_image.url }}" clip-path="url(#rectView)" >
+                            {% else %}
+                                <image width ="100%" height="225" xlink:href="{% static 'theblog\images\default.png' %}" clip-path="url(#rectView)" >
+                            {% endif %}
+                            
+                        </svg>
+                        <div class="card-body">
+                            <p class="card-text" style="text-align:center"> {{ topic }} </p>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn-group">
+                                    <small><button type="button" class="btn btn-sm btn-outline-secondary" 
+                                        onclick="location.href='{% url 'learning_logs:topic' topic.id %}'">
+                                        Pokaż więcej
+                                    </button></small>
+                                    <small><button type="button" class="btn btn-sm btn-outline-secondary" 
+                                        onclick="location.href='{% url 'learning_logs:edit_topic' topic.id %}'">
+                                        Edytuj
+                                    </button></small>
+                                    <small><button type="button" class="btn btn-sm btn-outline-secondary" 
+                                        onclick="location.href='{% url 'learning_logs:remove_topic' topic.id %}'">
+                                        Usuń
+                                    </button></small>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </br>
+                </div>
+                
+            {% empty %} 
+                <h3> Nie został jeszcze dodany żaden temat.</h3>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

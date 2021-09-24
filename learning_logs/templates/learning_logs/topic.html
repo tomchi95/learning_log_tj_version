@@ -1,0 +1,31 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+    <h2 style="text-align:center;"> {{ topic }} 
+    <small><a href= {% url 'learning_logs:edit_topic' topic.id %} >[Edytuj]</small>
+    <small><a href= {% url 'learning_logs:remove_topic' topic.id %} >[Usuń]</small>
+    </h2>
+{% endblock page_header %}
+
+{% block content %}
+    <h3><p style="text-align:center;">
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">Dodaj nowy wpis</a>
+    </p></h3>
+
+
+    {% for entry in entries %}
+        <div class="card bg-light mb-3">
+            <h5 class="card-header" align="center">
+                <p class="card-text">Opublikowany {{ entry.data_added|date:'d M Y H:i' }} przez {{ topic.owner }}
+                    <small><a href=" {% url 'learning_logs:edit_entry' entry.id %}">[Edytuj wpis]</a></small>
+                    <small><a href=" {% url 'learning_logs:remove_entry' entry.id %}">[Usuń wpis]</a></small>
+                </p>
+            </h5>
+                <div class="card-body">
+                    {{ entry.text|safe }}
+                </div>
+        </div>
+    {% empty %}
+        Nie ma jeszcze żadnego wpisu dla tego tematu.
+    {% endfor %}
+{% endblock content %}

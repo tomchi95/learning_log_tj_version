@@ -1,0 +1,21 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block header %}
+  <h2>
+    Usuń wpis
+  </h2>
+{% endblock header %}
+
+{% block content %}
+  <h3>Czy na pewno chcesz usunąć wpis: </h3>
+  <form action="{% url 'learning_logs:remove_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    <div class ="jumbotron">
+    <p class="lead"> {{ entry|safe }} </p>
+    </div>
+    {% buttons %}
+    <button name='submit' class="btn btn-primary">Usuń</button>
+    <input class="btn btn-primary" type=button value="Wróć" onClick="javascript:history.go(-1);">
+    {% endbuttons %}
+  </form>
+{% endblock content %}

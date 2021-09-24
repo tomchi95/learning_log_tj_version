@@ -1,0 +1,77 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+        <title> Learning Log </title>
+
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery='full' %}
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+
+            <a class="navbar-brand" href ="{% url 'learning_logs:index'%}" >
+                Learning Log</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expended="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:topics' %}">
+                        Tematy</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Witaj, {{ user.username }}
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            {% if user.profile.id %}
+                                <button class="dropdown-item" type="button" onclick=" location.href='{% url 'users:profile' user.id %}'"> Pokaż profil</button>
+                                <button class="dropdown-item" type="button" onclick=" location.href='{% url 'users:edit_profile' user.id %}'"> Edytuj profil</button>
+                            {% else %}
+                                <button class="dropdown-item" type="button" onclick=" location.href= '{% url 'users:new_profile' %}'"> Utwórz profil</button>
+                            {% endif %}
+                            <button class="dropdown-item" type="button" onclick=" location.href='{% url 'users:edit_settings' %}'"> Edytuj ustawienia</button>
+                            <button class="dropdown-item" type="button" onclick=" location.href='{% url 'password_change' %}'"> Zmień hasło</button>
+                            <button class="dropdown-item" type="button" onclick=" location.href= '{% url 'users:logout' %}'"> Wyloguj</button>
+                            
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    <li class="nav-item">
+                        <a class='nav-link' href=" {% url 'users:register' %}"> Rejestruj</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href= {% url 'users:login' %}> Zaloguj</a>
+                    </li>
+                    
+                {% endif %}
+            </ul>
+        </div>
+
+    </nav>
+    
+    <main role="main" class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %} {% endblock page_header %}
+        </div>
+        <div>
+            {% block content %} {% endblock content %}
+        </div>
+    </main>
+</body>
+</html>
